@@ -1,0 +1,79 @@
+{
+  "canisters": {
+    "canify_backend": {
+      "candid": "src/canify_backend/canify_backend.did",
+      "package": "canify_backend",
+      "type": "rust"
+    },
+    "ckbtc_ledger": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/ic/releases/download/ledger-suite-icrc-2025-04-14/ledger.did",
+      "wasm": "https://github.com/dfinity/ic/releases/download/ledger-suite-icrc-2025-04-14/ic-icrc1-ledger.wasm.gz",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
+    },
+    "cketh_ledger": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/ic/releases/download/ledger-suite-icrc-2025-04-14/ledger.did",
+      "wasm": "https://github.com/dfinity/ic/releases/download/ledger-suite-icrc-2025-04-14/ic-icrc1-ledger-u256.wasm.gz",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
+    },
+    "icp_ledger": {
+      "type": "custom",
+      "candid": "https://raw.githubusercontent.com/dfinity/ic/c87abf70cf6f0f81f7f16d9f517c3ff0db1fab1e/rs/rosetta-api/icp_ledger/ledger.did",
+      "wasm": "https://download.dfinity.systems/ic/c87abf70cf6f0f81f7f16d9f517c3ff0db1fab1e/canisters/ledger-canister.wasm.gz",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
+    },
+    "internet_identity": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
+      "frontend": {},
+      "specified_id": "rdmx6-jaaaa-aaaaa-aaadq-cai",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
+    },
+    "ckusdt_ledger": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/ic/releases/download/ledger-suite-icrc-2025-04-14/ledger.did",
+      "wasm": "https://github.com/dfinity/ic/releases/download/ledger-suite-icrc-2025-04-14/ic-icrc1-ledger.wasm.gz",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
+    },
+    "ic_chainlink_oracle": {
+      "type": "custom",
+      "candid": "provider/ic_chainlink_oracle/oracle.did",
+      "wasm": "provider/ic_chainlink_oracle/oracle.wasm.gz",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

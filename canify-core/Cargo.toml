@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/canify_backend"
+]
+resolver = "2"
