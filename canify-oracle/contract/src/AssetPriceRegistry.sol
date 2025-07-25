@@ -630,10 +630,13 @@ contract AssetPriceRegistryCanifyFinance is ReentrancyGuard {
             uint80 answeredInRound
         )
     {
+
+        AssetManager.PaymentAsset memory asset = _ownerAssets[ownerAddress][assetAddress].assetData;
+
+        AssetManager._validatePriceFeed(asset);
+        
         // Get price feed contract
-        AggregatorV3Interface priceFeed = AggregatorV3Interface(
-            _ownerAssets[ownerAddress][assetAddress].assetData.priceFeed
-        );
+        AggregatorV3Interface priceFeed = AggregatorV3Interface(asset.priceFeed);
         return priceFeed.latestRoundData();
     }
 

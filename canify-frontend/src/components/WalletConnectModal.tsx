@@ -1,8 +1,10 @@
 // components/WalletConnectModal.tsx
+import { useState } from "react"; // Add this import
 import { useAuth } from "@/context/auth";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react"; 
 
 const walletProviders = [
   {
@@ -29,32 +31,36 @@ export const WalletConnectModal = ({ isOpen, onOpenChange }: {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void
 }) => {
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, isLoading } = useAuth();
   const { toast } = useToast();
+  const [connectingWallet, setConnectingWallet] = useState<string | null>(null);
 
   const connectWallet = async (walletName: string) => {
+    if (isLoading || connectingWallet) return;
+
     try {
+      setConnectingWallet(walletName);
+      
       if (walletName === "Internet Identity") {
         await login();
-
-        if (!isAuthenticated) {
-          throw new Error("Authentication not confirmed");
-        }
-
-        onOpenChange(false);
 
         toast({
           title: `Connected to ${walletName}`,
           description: "Your wallet has been successfully connected!",
           duration: 5000,
         });
+
+        onOpenChange(false);
       }
     } catch (error) {
       console.error("Failed to connect wallet:", error);
       toast({
         title: "Connection Failed",
         description: "Unable to connect to wallet",
+        variant: "destructive",
       });
+    } finally {
+      setConnectingWallet(null);
     }
   };
 
@@ -84,9 +90,19 @@ export const WalletConnectModal = ({ isOpen, onOpenChange }: {
                 <button
                   key={wallet.name}
                   onClick={() => connectWallet(wallet.name)}
-                  className="w-full flex items-center justify-between p-4 rounded-xl border border-border/50 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/5 hover:to-success/5 transition-all duration-300 group hover:scale-[1.02] hover:shadow-lg animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  disabled={isLoading || !!connectingWallet}
+                  className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all duration-300 group relative ${
+                    (isLoading || connectingWallet) 
+                      ? 'opacity-50 cursor-not-allowed border-border/50' 
+                      : 'hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/5 hover:to-success/5 border-border/50 hover:scale-[1.02] hover:shadow-lg'
+                  }`}
                 >
+                  {connectingWallet === wallet.name && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-background/50 rounded-xl">
+                      <Loader2 className="h-6 w-6 animate-spin" />
+                    </div>
+                  )}
+
                   <div className="flex items-center gap-3">
                     <div className="text-2xl group-hover:scale-110 transition-transform duration-300">
                       <img
@@ -128,9 +144,20 @@ export const WalletConnectModal = ({ isOpen, onOpenChange }: {
                 <button
                   key={wallet.name}
                   onClick={() => connectWallet(wallet.name)}
-                  className="w-full flex items-center justify-between p-4 rounded-xl border border-border/50 hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/5 hover:to-success/5 transition-all duration-300 group hover:scale-[1.02] hover:shadow-lg animate-fade-in"
+                  disabled={isLoading || !!connectingWallet}
+                  className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all duration-300 group relative ${
+                    (isLoading || connectingWallet) 
+                      ? 'opacity-50 cursor-not-allowed border-border/50' 
+                      : 'hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary/5 hover:to-success/5 border-border/50 hover:scale-[1.02] hover:shadow-lg'
+                  }`}
                   style={{ animationDelay: `${(index + 2) * 100}ms` }}
                 >
+                  {connectingWallet === wallet.name && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-background/50 rounded-xl">
+                      <Loader2 className="h-6 w-6 animate-spin" />
+                    </div>
+                  )}
+
                   <div className="flex items-center gap-3">
                     <div className="text-2xl group-hover:scale-110 transition-transform duration-300">
                       <img

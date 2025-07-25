@@ -77,28 +77,6 @@ const WalletDropdown = () => {
     }
   }, [isAuthenticated]);
 
-  const connectWallet = async (walletName: string) => {
-    try {
-
-      if (walletName === "Internet Identity") {
-        await login();
-        setIsConnected(isAuthenticated);
-        setIsConnectModalOpen(false);
-
-        toast({
-          title: `Connected to ${walletName}`,
-          description: "Your wallet has been successfully connected!",
-          duration: 5000,
-        });
-      }
-    } catch (error) {
-      console.error("Failed to connect wallet:", error);
-      toast({
-        title: "Connection Failed",
-        description: "Unable to connect to wallet",
-      });
-    }
-  };
 
   const copyAddress = () => {
     navigator.clipboard.writeText(principal);
@@ -312,8 +290,8 @@ const WalletDropdown = () => {
         <PopoverContent className="w-64 p-3 bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl animate-scale-in" align="end">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-sm">Est Value</h3>
-              <span className="text-sm font-medium bg-gradient-to-r from-primary to-success bg-clip-text text-transparent">$ {estValue}</span>
+              <h3 className="font-bold text-sm">Est Value</h3>
+              <span className="text-sm bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">$ 111{estValue}</span>
             </div>
             <div className="border-t border-border/50 pt-3">
               <h4 className="text-xs font-medium text-muted-foreground mb-2">Assets</h4>

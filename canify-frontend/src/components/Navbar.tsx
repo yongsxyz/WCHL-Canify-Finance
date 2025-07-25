@@ -26,10 +26,10 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Dashboard", path: "/", icon: LayoutDashboard },
-    { name: "Markets", path: "/markets", icon: TrendingUp },
-    { name: "Faucet", path: "/faucet", icon: Droplets },
-    { name: "More", path: "/more", icon: MoreHorizontal },
+    { name: "Dashboard", path: "/app/", icon: LayoutDashboard },
+    { name: "Markets", path: "/app/markets", icon: TrendingUp },
+    { name: "Faucet", path: "/app/faucet", icon: Droplets },
+    { name: "More", path: "/app/more", icon: MoreHorizontal },
   ];
 
   return (
@@ -59,7 +59,7 @@ const Navbar = () => {
                 <NavLink
                   key={item.name}
                   to={item.path}
-                  end={item.path === "/"}
+                  end={item.path === "/app/"}
                   className={({ isActive }) =>
                     `flex items-center px-3 py-2 rounded-md text-sm font-bold transition-colors duration-200 ${isActive
                       ? "bg-primary text-primary-foreground text-white"
@@ -92,7 +92,7 @@ const Navbar = () => {
                       </div>
                       <div className="flex-1">
                         <h4 className="text-sm font-medium text-foreground group-hover:text-foreground">Leaderboards</h4>
-                        <p className="text-xs text-muted-foreground">View trading leaderboards</p>
+                        <p className="text-xs text-muted-foreground">View leaderboards</p>
                       </div>
                     </NavLink>
 
@@ -144,7 +144,7 @@ const Navbar = () => {
               <NavLink
                 key={item.name}
                 to={item.path}
-                end={item.path === "/"}
+                end={item.path === "/app/"}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `flex items-center px-3 py-2 rounded-md text-base font-bold transition-colors duration-200 ${isActive

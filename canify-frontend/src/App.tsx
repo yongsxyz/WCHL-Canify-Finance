@@ -16,21 +16,26 @@ const queryClient = new QueryClient();
 
 import { AuthProvider } from "@/context/auth";
 
+
+import LandingPage from "./pages/LandingPage";
+
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
-              <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/markets" element={<><Navbar /><Markets /></>} />
-          <Route path="/markets/:assetId" element={<><Navbar /><AssetDetail /></>} />
-          <Route path="/faucet" element={<><Navbar /><Faucet /></>} />
-          <Route path="/more" element={<><Navbar /><More /></>} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/app/" element={<Index />} />
+            <Route path="/app/markets" element={<><Navbar /><Markets /></>} />
+            <Route path="/app/markets/:assetId" element={<><Navbar /><AssetDetail /></>} />
+            <Route path="/app/faucet" element={<><Navbar /><Faucet /></>} />
+            <Route path="/app/more" element={<><Navbar /><More /></>} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
