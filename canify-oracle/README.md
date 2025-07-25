@@ -1,3 +1,5 @@
+<img width="1917" height="940" alt="MEDIA" src="https://github.com/user-attachments/assets/2bcc969d-9ece-47d6-8827-1d6a8c29e1b2" />
+
 # Chainlink Price Feed Integration via ICP + Alloy
 
 This integration securely reads Chainlink Price Feed data from Ethereum Sepolia and other EVM-compatible smart contracts using canisters deployed on the Internet Computer (ICP).

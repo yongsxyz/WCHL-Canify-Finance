@@ -57,10 +57,7 @@ async fn convert_usd_to_tokens(
 
     let icp_config = IcpConfig::new(get_rpc_service()).set_max_response_size(30_000);
     let provider = ProviderBuilder::new().on_icp(icp_config);
-    let contract = AssetPriceRegistry::new(
-        address!("59E3658160Ffe8A64298E10416d711Af1393b815"),
-        provider,
-    );
+    let contract = AssetPriceRegistry::new(ASSET_REGISTRY_CONTRACT, provider);
 
     let usd_amounts_raw: Result<Vec<Uint<248, 4>>, String> = parsed_inputs
         .iter()

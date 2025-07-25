@@ -135,15 +135,27 @@ pub fn create_derivation_path(principal: &Principal) -> Vec<Vec<u8>> {
     .collect()
 }
 
+
 pub fn get_ecdsa_key_name() -> String {
-    #[allow(clippy::option_env_unwrap)]
-    let dfx_network = option_env!("DFX_NETWORK").unwrap();
-    match dfx_network {
+    let network = option_env!("DFX_NETWORK").unwrap_or("ic");
+    
+    match network {
         "local" => "dfx_test_key".to_string(),
-        "ic" => "key_1".to_string(),
-        _ => panic!("Unsupported network."),
+        "ic" | "playground" => "key_1".to_string(),
+        _ => "key_1".to_string() // Fallback Playground 
     }
 }
+
+
+// pub fn get_ecdsa_key_name() -> String {
+//     #[allow(clippy::option_env_unwrap)]
+//     let dfx_network = option_env!("DFX_NETWORK").unwrap();
+//     match dfx_network {
+//         "local" => "dfx_test_key".to_string(),
+//         "ic" => "key_1".to_string(),
+//         _ => panic!("Unsupported network."),
+//     }
+// }
 
 
 // Fungsi untuk validasi dan normalisasi address
