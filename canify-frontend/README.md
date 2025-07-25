@@ -13,6 +13,11 @@
 ## Faucet
 <img width="1898" height="1070" alt="Faucet" src="https://github.com/user-attachments/assets/6deba909-4f8c-46c1-aef4-db9226a9cf63" />
 
+
+### Live Website 
+
+🚀 **Live Website:** [https://www.canify.xyz/](https://www.canify.xyz/)
+
 ### 🔹 Dashboard
 - View user portfolio summary:
   - Total asset value
